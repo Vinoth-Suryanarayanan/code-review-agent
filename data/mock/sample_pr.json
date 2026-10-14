@@ -1,0 +1,28 @@
+{
+  "_comment": "Fictional PR data for local testing — no real repo, no real author.",
+  "repo_full_name": "fictional-org/sample-app",
+  "pr_number": 42,
+  "title": "Add user authentication endpoint",
+  "body": "Fixes #12 — adds /login endpoint with JWT tokens.",
+  "base_branch": "main",
+  "head_branch": "feature/auth",
+  "author": "dev-alice",
+  "files": [
+    {
+      "filename": "src/auth.py",
+      "status": "added",
+      "additions": 30,
+      "deletions": 0,
+      "patch": "@@ -0,0 +1,30 @@\n+import jwt\n+SECRET = 'hardcoded-secret-do-not-do-this'\n+\n+def login(username, password):\n+    query = f\"SELECT * FROM users WHERE name='{username}'\"\n+    # ...\n+    token = jwt.encode({'user': username}, SECRET)\n+    return token\n",
+      "truncated": false
+    },
+    {
+      "filename": "tests/test_auth.py",
+      "status": "added",
+      "additions": 10,
+      "deletions": 0,
+      "patch": "@@ -0,0 +1,10 @@\n+def test_login_returns_token():\n+    token = login('alice', 'password')\n+    assert token is not None\n",
+      "truncated": false
+    }
+  ]
+}
