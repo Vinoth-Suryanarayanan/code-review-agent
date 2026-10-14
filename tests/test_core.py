@@ -16,11 +16,8 @@ from __future__ import annotations
 
 from unittest.mock import MagicMock, patch
 
-import pytest
-
 from review_agent.core.formatter import format_review
 from review_agent.core.passes import Finding, run_design_pass, run_security_pass
-
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 

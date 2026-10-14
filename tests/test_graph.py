@@ -12,9 +12,7 @@ What we test:
 
 from __future__ import annotations
 
-from unittest.mock import MagicMock, patch
-
-import pytest
+from unittest.mock import patch
 
 from review_agent.agents.graph import AgentState, build_graph
 from review_agent.core.passes import Finding
@@ -116,7 +114,7 @@ class TestGraphLargePRGuard:
 
         with patch("review_agent.agents.graph.fetch_pr_data", return_value=big_pr), \
              patch("review_agent.agents.graph.settings") as mock_settings, \
-             patch("review_agent.agents.graph.analyse_file") as mock_analyse:
+             patch("review_agent.agents.graph.analyse_file"):
 
             mock_settings.max_files_per_pr = 50
 

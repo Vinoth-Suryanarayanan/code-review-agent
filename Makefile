@@ -6,7 +6,7 @@ setup: install
 	@if [ ! -f .env ]; then cp .env.example .env; echo "✓ .env created — fill in GITHUB_TOKEN and ANTHROPIC_API_KEY"; fi
 
 install:
-	uv sync
+	uv sync --extra dev
 
 # ── Quality ───────────────────────────────────────────────────────────────────
 

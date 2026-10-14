@@ -19,7 +19,6 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
-from typing import Optional
 
 from github import Github
 from github.PullRequest import PullRequest
@@ -145,17 +144,16 @@ def post_review(
     # Build the list of review comments in the format PyGitHub expects.
     # Each comment needs: path, body, and EITHER line (new file position)
     # OR position (diff position).  We use line here.
-    review_comments = [
+    for c in comments:
+        # Only post comment if we can identify the line in the diff
+        if not c.get("line"):
+            continue
         pr.create_review_comment(
             body=c["body"],
             commit=pr.head.sha,   # attach to the latest commit
             path=c["path"],
             line=c["line"],
         )
-        for c in comments
-        # Only post comment if we can identify the line in the diff
-        if c.get("line")
-    ]
 
     # Submit the top-level review body.
     pr.create_review(body=body, event=event)
